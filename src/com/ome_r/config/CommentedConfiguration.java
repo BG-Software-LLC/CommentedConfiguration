@@ -198,7 +198,7 @@ public final class CommentedConfiguration extends YamlConfiguration {
      */
     private boolean syncConfigurationSection(CommentedConfiguration commentedConfig, ConfigurationSection section, List<String> ignoredSections){
         //Variables that are used to track progress.
-        boolean changed = false, correctIndexes = false;
+        boolean changed = false;
 
         //Going through all the keys of the section.
         for (String key : section.getKeys(false)) {
@@ -215,9 +215,6 @@ public final class CommentedConfiguration extends YamlConfiguration {
                 if(!containsSection || !isIgnored) {
                     //Syncing data and updating the changed variable.
                     changed = syncConfigurationSection(commentedConfig, section.getConfigurationSection(key), ignoredSections) || changed;
-                    //If the config didn't contain the section, we will need to correct the indexes of it's keys.
-                    if(!containsSection)
-                        correctIndexes = true;
                 }
             }
 
@@ -227,7 +224,6 @@ public final class CommentedConfiguration extends YamlConfiguration {
                 set(path, section.get(key));
                 //Updating variables.
                 changed = true;
-                correctIndexes = true;
             }
 
             //Checking if there is a valid comment for the path, and also making sure the comments are not the same.
@@ -245,7 +241,7 @@ public final class CommentedConfiguration extends YamlConfiguration {
         as the resource that was provided).*/
 
         //Checking if there was a value that had been added into the config
-        if(correctIndexes)
+        if(changed)
             correctIndexes(section, getConfigurationSection(section.getCurrentPath()));
 
         return changed;
@@ -379,18 +375,13 @@ public final class CommentedConfiguration extends YamlConfiguration {
      */
     private static void correctIndexes(ConfigurationSection section, ConfigurationSection target){
         //Parsing the sections into ArrayLists with their keys and values.
-        List<Pair<String, Object>> sectionMap = getSectionMap(section), targetMap = getSectionMap(target), correctOrder = new ArrayList<>();
+        List<Pair<String, Object>> sectionMap = getSectionMap(section), correctOrder = new ArrayList<>();
 
         //Going through the sectionMap, which is in the correct order.
         for (Pair<String, Object> entry : sectionMap) {
-            //Adding the entry into a new list.
-            correctOrder.add(entry);
-            //Removing the entry from the target's list, to make sure no duplicates occur.
-            targetMap.remove(entry);
+            //Adding the entry into a new list with the correct value from the target section.
+            correctOrder.add(new Pair<>(entry.key, target.get(entry.key)));
         }
-
-        //Adding all the remaining entries into the array.
-        correctOrder.addAll(targetMap);
 
         /*The only way to change key-indexes is to add them one-by-one again, in the correct order.
         In order to do so, the section needs to be cleared so the indexes will be reset.*/
