@@ -15,7 +15,7 @@
  *
  *******************************************************************************/
 
-package com.ome_r.config;
+package com.bgsoftware.common;
 
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.ConfigurationSection;
