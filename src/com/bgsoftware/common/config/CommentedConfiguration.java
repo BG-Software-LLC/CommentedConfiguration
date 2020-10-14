@@ -15,7 +15,7 @@
  *
  *******************************************************************************/
 
-package com.bgsoftware.common;
+package com.bgsoftware.common.config;
 
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.ConfigurationSection;
