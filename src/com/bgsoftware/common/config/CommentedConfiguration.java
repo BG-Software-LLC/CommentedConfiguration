@@ -148,7 +148,7 @@ public final class CommentedConfiguration extends YamlConfiguration {
                 currentSection = getSectionPath(this, lines[currentIndex], currentSection);
 
                 //If there is a valid comment for the section.
-                if(comments.length() > 0)
+                if(comments.length() > 1)
                     //Adding the comment.
                     setComment(currentSection, comments.toString().substring(0, comments.length() - 1));
 
