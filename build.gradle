@@ -1,0 +1,15 @@
+plugins {
+    id 'java'
+    id 'com.github.johnrengelman.shadow' version '7.0.0'
+    id 'maven-publish'
+}
+
+group 'CommentedConfiguration'
+
+repositories {
+    maven { url 'https://repo.bg-software.com/repository/nms/' }
+}
+
+dependencies {
+    compileOnly "org.spigotmc:v1_8_R3-Taco:latest"
+}
