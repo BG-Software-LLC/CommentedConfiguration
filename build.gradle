@@ -11,5 +11,5 @@ repositories {
 }
 
 dependencies {
-    compileOnly "org.spigotmc:v1_8_R3-Taco:latest"
+    compileOnly "org.spigotmc:v1_18_R1:b3407:API"
 }
