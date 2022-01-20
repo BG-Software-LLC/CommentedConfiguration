@@ -171,6 +171,8 @@ public final class CommentedConfiguration extends YamlConfiguration {
         this.options().header(null);
         //Get the string of the data (keys and values) and parse it into an array of lines.
         List<String> lines = new ArrayList<>(Arrays.asList(super.saveToString().split("\n")));
+        // Remove comment lines from the lines array, if they exist.
+        lines.removeIf(line -> line.trim().startsWith("#"));
 
         //Variables that are used to track progress.
         int currentIndex = 0;
