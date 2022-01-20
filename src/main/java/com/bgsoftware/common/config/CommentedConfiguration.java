@@ -10,7 +10,7 @@
  *
  *     Spigot: https://www.spigotmc.org/resources/authors/ome_r.25629/
  *     MC-Market: https://www.mc-market.org/resources/authors/40228/
- *     Github: https://github.com/OmerBenGera?tab=repositories
+ *     GitHub: https://github.com/OmerBenGera?tab=repositories
  *     Website: https://bg-software.com/
  *
  *******************************************************************************/
@@ -102,7 +102,7 @@ public final class CommentedConfiguration extends YamlConfiguration {
     }
 
     /**
-     * Checks whether or not a path has a comment.
+     * Checks whether a path has a comment or not.
      * @param path The path to check.
      * @return Returns true if there's an existing comment, otherwise false.
      */
@@ -138,7 +138,7 @@ public final class CommentedConfiguration extends YamlConfiguration {
         while(currentIndex < lines.length){
             //Checking if the current line is a comment.
             if(isComment(lines[currentIndex])){
-                //Adding the comment to the builder with an enter at the end.
+                //Adding the comment to the builder with a new line at the end.
                 comments.append(lines[currentIndex]).append("\n");
             }
 
@@ -254,7 +254,7 @@ public final class CommentedConfiguration extends YamlConfiguration {
         }
 
         /*Keys cannot be ordered easily, so we need to do some tricks to make sure
-        all of the keys are ordered correctly (and the new config will look the same
+        all of them are ordered correctly (and the new config will look the same
         as the resource that was provided).*/
 
         //Checking if there was a value that had been added into the config
@@ -438,7 +438,7 @@ public final class CommentedConfiguration extends YamlConfiguration {
     }
 
     /**
-     * Clear a configuration section from all of it's keys.
+     * Clear a configuration section from all of its keys.
      * This can be done by setting all the keys' values to null.
      * @param section The section to clear.
      */
