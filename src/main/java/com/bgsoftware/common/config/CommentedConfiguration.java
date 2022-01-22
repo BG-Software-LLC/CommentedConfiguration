@@ -52,6 +52,15 @@ public final class CommentedConfiguration extends YamlConfiguration {
      */
     private boolean creationFailure = false;
 
+    public CommentedConfiguration() {
+        try {
+            // We don't want the YAML to parse comments at all.
+            this.options().parseComments(false);
+        } catch (Throwable ignored) {
+
+        }
+    }
+
     /**
      * Sync the config with another resource.
      * This method can be used as an auto updater for your config files.
@@ -169,12 +178,6 @@ public final class CommentedConfiguration extends YamlConfiguration {
     public String saveToString() {
         //First, we set headers to null - as we will handle all comments, including headers, in this method.
         this.options().header(null);
-
-        try {
-            this.options().parseComments(false);
-        } catch (Throwable ignored) {
-
-        }
 
         //Get the string of the data (keys and values) and parse it into an array of lines.
         List<String> lines = new ArrayList<>(Arrays.asList(super.saveToString().split("\n")));
