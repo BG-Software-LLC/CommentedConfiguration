@@ -5,11 +5,10 @@ plugins {
 }
 
 group 'CommentedConfiguration'
-version = "1.0.4"
 
 project.ext {
     targetFolder = file("target/")
-    buildVersion = System.getenv("BUILD_NUMBER") == null ? version : version + "-b" + System.getenv("BUILD_NUMBER")
+    buildVersion = System.getenv("BUILD_NUMBER") == null ? "Unknown" : "b" + System.getenv("BUILD_NUMBER")
 }
 
 repositories {
@@ -44,7 +43,7 @@ publishing {
         maven(MavenPublication) {
             groupId = 'com.bgsoftware.common.config'
             artifactId = 'CommentedConfiguration'
-            version = rootProject.version
+            version = rootProject.buildVersion
 
             from components.java
         }
